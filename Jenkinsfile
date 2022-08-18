@@ -48,6 +48,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'tej', url: 'https://github.com/Tejindrakhatri/jenkinspipeline.git']]])
         sh "docker rmi $registry:latest"
       }
     }
